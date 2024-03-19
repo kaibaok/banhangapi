@@ -13,11 +13,9 @@ class Authenticate extends Middleware
      * @return string|null
      */
     protected function redirectTo($request)
-    {          
+    {
         if (! $request->expectsJson()) {
-            // die('Hello world');
-
-            echo  json_encode(["error" => "Loss Accept application/json"]);
+            echo json_encode(["error" => "Loss Accept application/json"]);
             die;
         }
     }

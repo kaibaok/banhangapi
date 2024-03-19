@@ -12,20 +12,20 @@ class UserController extends Controller
 		$params = $request->all();
 		$page = !empty($params['page']) ? $params['page'] : 1;
 		$limit = !empty($request['limit']) ? $request['limit'] : 0;
-        $name = isset($request['name']) ? $request['name'] : 'None';
+        $username = isset($request['username']) ? $request['username'] : '';
 
         $data = null;
-        
-        $user = User::where('name', 'like', "%{$name}%");
-           
+
+        $user = User::where('username', 'like', "%{$username}%");
+
         if(!$limit)
             $data = ["data" =>  $user->get() ];
         else
             $data = $user->paginate($limit)->withQueryString();
-            
+
         if(!is_array($data)) {
             $data = $data->toArray();
-        }     
+        }
 
         return response($data);
     }

@@ -37,3 +37,12 @@ Restart Mamp ( apache)
 http://banhang.local/api
 
 endpoint should be updated in ./routes/api.php
+
+
+
+<!-- migration -->
+create database banhang in phpmyadmin
+first run : php artisan migrate
+next time run : php artisan migrate:fresh
+
+create new migrate:  php artisan make:migration name_of_table

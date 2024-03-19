@@ -25,10 +25,10 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
-        
-        $ttl = ($request->remember_me == true) ? 
-            env('JWT_REMEMBER_TTL') : env('JWT_TTL'); 
-            
+
+        $ttl = ($request->remember_me == true) ?
+            env('JWT_REMEMBER_TTL') : env('JWT_TTL');
+
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
@@ -44,9 +44,10 @@ class AuthController extends Controller
      */
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
+            'username' => 'required|string|between:2,100',
+            'email' => 'required|string|email|max:100|unique:user',
             'password' => 'required|string|confirmed|min:6',
+            'permission' => 'integer',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -84,6 +85,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function userProfile() {
+        var_dump(auth()->user());die;
         return response()->json(auth()->user());
     }
     /**
@@ -97,8 +99,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
 }
