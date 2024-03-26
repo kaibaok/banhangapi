@@ -20,7 +20,7 @@ class CategoryFoodTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('food')->insert([
+        DB::table('category_food')->insert([
             [
                 'id' => 1,
                 'name'=> 'đồ ăn mặn',
