@@ -3,20 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DevicesController;
-use App\Http\Controllers\TypesDeviceController;
-use App\Http\Controllers\DeviceFuncController;
-use App\Http\Controllers\ServicesController;
-use App\Http\Controllers\AreasController;
-use App\Http\Controllers\QuestionTypeController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\AnswerDetailsController;
-use App\Http\Controllers\MediaController;
-use App\Http\Controllers\LessonController;
-use App\Http\Controllers\LessonDetailsController;
-use App\Http\Controllers\EnglishBookController;
-use App\Http\Controllers\EnglishBookDetailsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\InvoiceDetailsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,10 +34,14 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'auth:api',
+    'middleware' => 'api' //'auth:api',
 ], function ($router) {
     // USER
     Route::get('/users', [UserController::class, 'index']);
+    Route::group(['prefix'=>'invoice'], function(){
+        Route::get('/', [InvoiceController::class, 'index']);
+        Route::get('/details/{invoice_id}', [InvoiceDetailsController::class, 'index']);
+    });
 });
 
 

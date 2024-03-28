@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class UserInfo extends Migration
 {
@@ -29,7 +30,9 @@ class UserInfo extends Migration
                 'full_name' => 'nguyen van a',
                 'cid' => '123123',
                 'address'=>'34/1 kp4 nha be',
-                'phone'=> '093919129'
+                'phone'=> '093919129',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ]);
 

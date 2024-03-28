@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class CreateUserTable extends Migration
 {
@@ -29,8 +30,10 @@ class CreateUserTable extends Migration
                 'id' => 1,
                 'username' => 'test_user',
                 'email' => 'test_user@gmail.com',
-                'password'=>'$2y$10$HazXNcTt7MvO3oJ/YglTve/iMHBCEaj52Uv/11WP45K1LEsvL.Y4O',
-                'permission'=> 1
+                'password'=>'$2y$10$HazXNcTt7MvO3oJ/YglTve/iMHBCEaj52Uv/11WP45K1LEsvL.Y4O', // 123456
+                'permission'=> config('constants.permission.admin'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ]);
 

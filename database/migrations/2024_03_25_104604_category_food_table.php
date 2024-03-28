@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class CategoryFoodTable extends Migration
 {
@@ -24,17 +25,23 @@ class CategoryFoodTable extends Migration
             [
                 'id' => 1,
                 'name'=> 'đồ ăn mặn',
-                'status' => 1,
+                'status' => config('constants.status.invisible'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'id' => 2,
                 'name'=> 'đồ uống',
-                'status' => 1,
+                'status' => config('constants.status.visible'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'id' => 3,
                 'name'=> 'trái cây, tráng miệng',
-                'status' => 1,
+                'status' => config('constants.status.deleted'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ]);
     }
