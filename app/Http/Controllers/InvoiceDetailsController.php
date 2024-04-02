@@ -28,6 +28,6 @@ class InvoiceDetailsController extends Controller
             $data = $data->toArray();
         }
 
-        return response($data);
+        return response(array_push($data, ['error_message' => null]));
     }
 }

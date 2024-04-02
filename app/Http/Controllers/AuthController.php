@@ -30,10 +30,16 @@ class AuthController extends Controller
             env('JWT_REMEMBER_TTL') : env('JWT_TTL');
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json( [
+                'error_message' => $validator->errors(),
+                'result' => 'error'
+            ], 422);
         }
         if (! $token = auth()->setTTL($ttl)->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json([
+                'result' => 'error',
+                'error_message' => 'Unauthorized'
+            ], 401);
         }
         return $this->createNewToken($token);
     }
@@ -50,15 +56,20 @@ class AuthController extends Controller
             'permission' => 'integer',
         ]);
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            return response()->json(
+                [
+                    'error_message' => $validator->errors(),
+                    'result' => 'error'
+                ], 400);
         }
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
         return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
+            'result' => 'User successfully registered',
+            'user' => $user,
+            'error_message' => null
         ], 201);
     }
 
@@ -69,7 +80,10 @@ class AuthController extends Controller
      */
     public function logout() {
         auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        return response()->json([
+            'result' => 'User successfully signed out',
+            'error_message' => null
+        ]);
     }
     /**
      * Refresh a token.
@@ -85,7 +99,13 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function userProfile() {
-        return response()->json(auth()->user());
+        return response()->json(
+            [
+                'user_profile' => auth()->user(),
+                'result' => 'success',
+                'error_message' => null
+            ]
+        );
     }
     /**
      * Get the token array structure.
@@ -98,7 +118,9 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL(),
+            'result' => 'success',
+            'error_message' => null
         ]);
     }
 }
