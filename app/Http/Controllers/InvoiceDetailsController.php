@@ -20,14 +20,14 @@ class InvoiceDetailsController extends Controller
             ->where('note', 'like', "%{$note}%");
 
         if(!$limit)
-            $data = ["data" =>  $invoiceDetails->get() ];
+            $data = $invoiceDetails->get();
         else
             $data = $invoiceDetails->paginate($limit)->withQueryString();
 
         if(!is_array($data)) {
             $data = $data->toArray();
         }
-
-        return response(array_push($data, ['error_message' => null]));
+        
+        return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
     }
 }

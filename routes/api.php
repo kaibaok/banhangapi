@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\CategoryFoodController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceDetailsController;
 /*
@@ -34,13 +36,36 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'api' //'auth:api',
+    'middleware' => 'auth:api' 
 ], function ($router) {
-    // USER
+    // users/
     Route::get('/users', [UserController::class, 'index']);
+
+    // invoices
+    Route::get('/invoices', [InvoiceController::class, 'index']); 
     Route::group(['prefix'=>'invoice'], function(){
-        Route::get('/', [InvoiceController::class, 'index']);
+        // invoice/details/{invoice_id}
         Route::get('/details/{invoice_id}', [InvoiceDetailsController::class, 'index']);
+    });
+
+    // foods
+    Route::get('/foods', [FoodController::class, 'index']);
+    Route::get('/category-foods', [CategoryFoodController::class, 'index']);
+    
+    Route::group(['prefix'=>'food'], function(){
+        // food
+        Route::post('/create', [FoodController::class, 'create']);
+        Route::put('/edit/{id}', [FoodController::class, 'edit']);
+        Route::delete('/del/{id}', [FoodController::class, 'delete']);
+        Route::get('/{id}', [FoodController::class, 'getID']);
+    });
+
+    Route::group(['prefix'=>'category-food'], function(){
+        // category-food
+        Route::post('/create', [CategoryFoodController::class, 'create']);
+        Route::put('/edit/{id}', [CategoryFoodController::class, 'edit']);
+        Route::delete('/del/{id}', [CategoryFoodController::class, 'delete']);
+        Route::get('/{id}', [CategoryFoodController::class, 'getID']);
     });
 });
 

@@ -19,7 +19,7 @@ class UserController extends Controller
         $user = User::where('username', 'like', "%{$username}%");
 
         if(!$limit)
-            $data = ["data" =>  $user->get() ];
+            $data = $user->get();
         else
             $data = $user->paginate($limit)->withQueryString();
 
@@ -27,6 +27,6 @@ class UserController extends Controller
             $data = $data->toArray();
         }
 
-        return response(array_push($data, ['error_message' => null]));
+        return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
     }
 }

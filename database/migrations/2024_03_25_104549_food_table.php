@@ -17,12 +17,12 @@ class FoodTable extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
-            $table->string('code');
-            $table->integer('price');
-            $table->text('image_url');
-            $table->text('description');
+            $table->string('code')->nullable();
+            $table->integer('price')->default(0);
+            $table->text('image_url')->nullable();
+            $table->text('description')->nullable();
             $table->string('name');
-            $table->integer('status');
+            $table->integer('status')->default(config('constants.status.invisible'));
             $table->timestamps();
         });
 
