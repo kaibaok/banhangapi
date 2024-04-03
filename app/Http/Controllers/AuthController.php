@@ -68,8 +68,8 @@ class AuthController extends Controller
                 ));
         return response()->json([
             'result' => 'User successfully registered',
-            'user' => $user,
-            'error_message' => null
+            'error_message' => null,
+            'user' => $user
         ], 201);
     }
 
@@ -101,9 +101,9 @@ class AuthController extends Controller
     public function userProfile() {
         return response()->json(
             [
-                'user_profile' => auth()->user(),
-                'result' => 'success',
-                'error_message' => null
+                'result' => 'Success',
+                'error_message' => null,
+                'user_profile' => auth()->user()
             ]
         );
     }
@@ -116,11 +116,11 @@ class AuthController extends Controller
      */
     protected function createNewToken($token){
         return response()->json([
+            'result' => 'Success',
+            'error_message' => null,
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL(),
-            'result' => 'success',
-            'error_message' => null
+            'expires_in' => auth()->factory()->getTTL()* 1
         ]);
     }
 }
