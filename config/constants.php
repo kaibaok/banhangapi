@@ -15,7 +15,9 @@ return [
         'paid' => 1,
     ],
     'permission' => [
-        'user' => 0,
-        'admin' => 1
+        'admin' => 1,
+        'staff' => 2,
+        'chef' => 3,
+        
     ],
 ];

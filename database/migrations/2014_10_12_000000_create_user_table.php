@@ -28,8 +28,26 @@ class CreateUserTable extends Migration
         DB::table('user')->insert([
             [
                 'id' => 1,
-                'username' => 'test_user',
-                'email' => 'test_user@gmail.com',
+                'username' => 'Name_Admin',
+                'email' => 'admin@gmail.com',
+                'password'=>'$2y$10$HazXNcTt7MvO3oJ/YglTve/iMHBCEaj52Uv/11WP45K1LEsvL.Y4O', // 123456
+                'permission'=> config('constants.permission.admin'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'id' => 2,
+                'username' => 'Name_Staff',
+                'email' => 'staff@gmail.com',
+                'password'=>'$2y$10$HazXNcTt7MvO3oJ/YglTve/iMHBCEaj52Uv/11WP45K1LEsvL.Y4O', // 123456
+                'permission'=> config('constants.permission.admin'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'id' => 3,
+                'username' => 'Name_Chef',
+                'email' => 'chef@gmail.com',
                 'password'=>'$2y$10$HazXNcTt7MvO3oJ/YglTve/iMHBCEaj52Uv/11WP45K1LEsvL.Y4O', // 123456
                 'permission'=> config('constants.permission.admin'),
                 'created_at' => Carbon::now(),
