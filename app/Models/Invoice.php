@@ -27,6 +27,10 @@ class Invoice extends Model
         'note',
         'status',
         'delivery',
+        'table_number',
+        'user_id',
+        'customer_id',
+        'discount',
         'created_at',
         'updated_at',
     ];

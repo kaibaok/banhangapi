@@ -4,28 +4,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\Food;
+use Illuminate\Support\Facades\DB;
 use Validator;
 
 class FoodController extends Controller
 {
     public function index(Request $request) {
-		$params = $request->all();
-		$page = !empty($params['page']) ? $params['page'] : 1;
-		$limit = !empty($request['limit']) ? $request['limit'] : 0;
+		$limit = !empty($request['limit']) ? $request['limit'] : 30;
+        $category_id = isset($request['category_id']) ? $request['category_id'] : 0;
+        $status = isset($request['status']) ? $request['status'] : 0;
         $name = isset($request['name']) ? $request['name'] : '';
+        $description = isset($request['description']) ? $request['description'] : '';
         
-        $data = null;
-        
-        $results = Food::where('name', 'like', "%{$name}%");
+        $results = DB::table('food')
+        ->selectRaw("food.*, category_food.name as category_name")
+        ->leftJoin('category_food', 'food.category_id', '=', 'category_food.id')
+        ->where('food.name' ,'like', "%{$name}%")
+        ->where('food.description' ,'like', "%{$description}%");
 
-        if(!$limit)
-            $data = $results->get();
-        else
-            $data = $results->paginate($limit)->withQueryString();
-
-        if(!is_array($data)) {
-            $data = $data->toArray();
+        if($category_id) {
+            $results = $results->where('food.category_id','=', $category_id);    
         }
+        if($status) {
+            $results = $results->where('food.status','=', $status);    
+        }
+        
+        $data = $results->paginate($limit)->withQueryString()->toArray();
 
         return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
     }

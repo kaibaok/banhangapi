@@ -9,23 +9,15 @@ use Validator;
 class CategoryFoodController extends Controller
 {
     public function index(Request $request) {
-		$params = $request->all();
-		$page = !empty($params['page']) ? $params['page'] : 1;
-		$limit = !empty($request['limit']) ? $request['limit'] : 0;
+		$limit = !empty($request['limit']) ? $request['limit'] : 30;
+        $status = isset($request['status']) ? $request['status'] : 0;
         $name = isset($request['name']) ? $request['name'] : '';
         
-        $data = null;
-        
         $results = CategoryFood::where('name', 'like', "%{$name}%");
-
-        if(!$limit)
-            $data = $results->get();
-        else
-            $data = $results->paginate($limit)->withQueryString();
-
-        if(!is_array($data)) {
-            $data = $data->toArray();
+        if($status) {
+            $results = $results->where('status','=', $status);    
         }
+        $data = $results->paginate($limit)->withQueryString()->toArray();
 
         return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
     }

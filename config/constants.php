@@ -2,22 +2,25 @@
 
 return [
     'status' => [
-        'invisible'=> 0,
-        'visible' => 1,
-        'deleted' => 2
+        'all' => 0,
+        'invisible'=> 1,
+        'visible' => 2,
+        'deleted' => 3
     ],
     'order_delivery' => [
-        'non_delivery' => 0,
-        'delivery' => 1
+        'all' => 0,
+        'non_delivery' => 1,
+        'delivery' => 2
     ],
     'order_status' => [
-        'unpaid' => 0,
-        'paid' => 1,
+        'all' => 0,
+        'unpaid' => 1,
+        'paid' => 2,
     ],
     'permission' => [
+        'all'=> 0,
         'admin' => 1,
         'staff' => 2,
         'chef' => 3,
-        
     ],
 ];
