@@ -7,7 +7,7 @@ use Validator;
 
 class FoodController extends Controller
 {
-    public function index(Request $request) {
+    public function getPage(Request $request) {
 		$limit = !empty($request['limit']) ? $request['limit'] : 30;
         $category_id = isset($request['category_id']) ? $request['category_id'] : 0;
         $status = isset($request['status']) ? $request['status'] : 0;
@@ -29,7 +29,7 @@ class FoodController extends Controller
         
         $data = $results->paginate($limit)->withQueryString()->toArray();
 
-        return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+        return response(['foods' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 
     public function getID(Request $request, $id) {

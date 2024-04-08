@@ -54,7 +54,7 @@ Route::group([
     });
 
     // foods
-    Route::get('/foods', [FoodController::class, 'index']);
+    Route::get('/foods', [FoodController::class, 'getPage']);
     Route::get('/category-foods', [CategoryFoodController::class, 'index']);
     
     Route::group(['prefix'=>'food'], function(){
