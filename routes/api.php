@@ -8,6 +8,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\CategoryFoodController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceDetailsController;
+use App\Http\Controllers\SetTableController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -70,6 +71,15 @@ Route::group([
         Route::put('/edit/{id}', [CategoryFoodController::class, 'edit']);
         Route::delete('/del/{id}', [CategoryFoodController::class, 'delete']);
         Route::get('/{id}', [CategoryFoodController::class, 'getID']);
+    });
+
+    Route::get('/tables', [SetTableController::class, 'index']);
+    Route::group(['prefix' => 'table'], function () {
+        // food
+        Route::post('/create', [SetTableController::class, 'create']);
+        Route::put('/edit/{id}', [SetTableController::class, 'edit']);
+        Route::delete('/del/{id}', [SetTableController::class, 'delete']);
+        Route::get('/{id}', [SetTableController::class, 'getID']);
     });
 });
 
