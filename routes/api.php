@@ -45,6 +45,10 @@ Route::group([
     Route::get('/invoices', [InvoiceController::class, 'index']); 
     Route::group(['prefix'=>'invoice'], function(){
         // invoice/details/{invoice_id}
+        Route::post('/create', [InvoiceController::class, 'create']);
+        Route::put('/edit/{id}', [InvoiceController::class, 'edit']);
+        Route::delete('/del/{id}', [InvoiceController::class, 'delete']);
+        Route::get('/{id}', [InvoiceController::class, 'getID']);
         Route::get('/details/{invoice_id}', [InvoiceDetailsController::class, 'index']);
     });
 

@@ -18,12 +18,12 @@ class InvoiceTable extends Migration
             $table->id();
             $table->integer('vat');
             $table->text('note');
-            $table->integer('status');
-            $table->integer('delivery');
-            $table->integer('table_number');
+            $table->integer('status')->default(0);
+            $table->integer('delivery')->default(0);
+            $table->integer('table_id')->default(0);
             $table->integer('user_id');  // staff
             $table->integer('customer_id'); // customer
-            $table->integer('discount'); // % discount
+            $table->integer('discount')->default(0); // % discount
             $table->timestamps();
         });
 
@@ -34,7 +34,7 @@ class InvoiceTable extends Migration
                 'note'=> 'ko mún ăn trứng chiên, ít ngọt',                
                 'delivery'=> config('constants.order_delivery.non_delivery'),
                 'status' => config('constants.order_status.unpaid'),
-                'table_number' => 1,
+                'table_id' => 1,
                 'user_id' => 1,
                 'customer_id' => 1,
                 'discount' => 0,
@@ -47,7 +47,7 @@ class InvoiceTable extends Migration
                 'note'=> 'ko mún ăn trứng chiên, ít ngọt 222',                
                 'delivery'=> config('constants.order_delivery.delivery'),
                 'status' => config('constants.order_status.paid'),
-                'table_number' => 0,
+                'table_id' => 2,
                 'user_id' => 2,
                 'customer_id' => 2,
                 'discount' => 0,
@@ -60,8 +60,8 @@ class InvoiceTable extends Migration
                 'note'=> 'nhieu mon vo',                
                 'delivery'=> config('constants.order_delivery.non_delivery'),
                 'status' => config('constants.order_status.paid'),
-                'table_number' => 2,
-                'user_id' => 2,
+                'table_id' => 3,
+                'user_id' => 3,
                 'customer_id' => 2,
                 'discount' => 10,
                 'created_at' => Carbon::now(),
