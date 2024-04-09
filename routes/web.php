@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\UploadFileController;
 
 
 /*
@@ -18,3 +19,6 @@ use App\Http\Controllers\IndexController;
 Route::get('/', function () {
     return 'hello world';
 });
+
+Route::post('/upload-file', [UploadFileController::class, 'index']);
+

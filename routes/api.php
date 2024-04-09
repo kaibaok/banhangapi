@@ -67,6 +67,8 @@ Route::group([
         Route::delete('/del/{id}', [CategoryFoodController::class, 'delete']);
         Route::get('/{id}', [CategoryFoodController::class, 'getID']);
     });
+
+
 });
 
 
