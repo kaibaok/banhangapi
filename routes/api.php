@@ -8,6 +8,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\CategoryFoodController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceDetailsController;
+use App\Http\Controllers\SetTableController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,11 +46,15 @@ Route::group([
     Route::get('/invoices', [InvoiceController::class, 'index']); 
     Route::group(['prefix'=>'invoice'], function(){
         // invoice/details/{invoice_id}
+        Route::post('/create', [InvoiceController::class, 'create']);
+        Route::put('/edit/{id}', [InvoiceController::class, 'edit']);
+        Route::delete('/del/{id}', [InvoiceController::class, 'delete']);
+        Route::get('/{id}', [InvoiceController::class, 'getID']);
         Route::get('/details/{invoice_id}', [InvoiceDetailsController::class, 'index']);
     });
 
     // foods
-    Route::get('/foods', [FoodController::class, 'index']);
+    Route::get('/foods', [FoodController::class, 'getPage']);
     Route::get('/category-foods', [CategoryFoodController::class, 'index']);
     
     Route::group(['prefix'=>'food'], function(){
@@ -57,7 +62,7 @@ Route::group([
         Route::post('/create', [FoodController::class, 'create']);
         Route::put('/edit/{id}', [FoodController::class, 'edit']);
         Route::delete('/del/{id}', [FoodController::class, 'delete']);
-        Route::get('/{id}', [FoodController::class, 'getID']);
+        Route::get('/detail/{id}', [FoodController::class, 'getID']);
     });
 
     Route::group(['prefix'=>'category-food'], function(){
@@ -69,6 +74,14 @@ Route::group([
     });
 
 
+    Route::get('/tables', [SetTableController::class, 'index']);
+    Route::group(['prefix' => 'table'], function () {
+        // food
+        Route::post('/create', [SetTableController::class, 'create']);
+        Route::put('/edit/{id}', [SetTableController::class, 'edit']);
+        Route::delete('/del/{id}', [SetTableController::class, 'delete']);
+        Route::get('/{id}', [SetTableController::class, 'getID']);
+    });
 });
 
 

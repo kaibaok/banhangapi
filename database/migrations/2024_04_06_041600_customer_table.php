@@ -53,6 +53,5 @@ class CustomerTable extends Migration
     public function down()
     {
         Schema::dropIfExists('customer');
-
     }
 }

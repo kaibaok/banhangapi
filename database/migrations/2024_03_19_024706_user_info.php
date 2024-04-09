@@ -34,6 +34,24 @@ class UserInfo extends Migration
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'user_id' => 2,
+                'full_name' => 'tran thi b',
+                'cid' => '123123',
+                'address' => '33/1 kp5 nha be',
+                'phone' => '093919112',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'user_id' => 3,
+                'full_name' => 'vo thanh c',
+                'cid' => '123123',
+                'address' => '22/1 kp6 nha be',
+                'phone' => '039191292',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
 
     }

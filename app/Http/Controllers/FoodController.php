@@ -1,15 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use App\Models\Food;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
 class FoodController extends Controller
 {
-    public function index(Request $request) {
+    public function getPage(Request $request) {
 		$limit = !empty($request['limit']) ? $request['limit'] : 30;
         $category_id = isset($request['category_id']) ? $request['category_id'] : 0;
         $status = isset($request['status']) ? $request['status'] : 0;
@@ -31,7 +29,7 @@ class FoodController extends Controller
         
         $data = $results->paginate($limit)->withQueryString()->toArray();
 
-        return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+        return response(['foods' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 
     public function getID(Request $request, $id) {
@@ -39,7 +37,7 @@ class FoodController extends Controller
             return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}" ],400);
         $data = Food::find($id);
         if($data)
-            return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+            return response(['food' => $data, 'result' => 'Success', 'error_message' => null]);
         else
             return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
      }

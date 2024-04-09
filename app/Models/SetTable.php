@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class InvoiceDetails extends Model
+class SetTable extends Model
 {
     use HasFactory, Notifiable;
-    /**
+      /**
      * The attributes that are mass assignable.
      *
      * @var string
      */
-    protected $table = 'invoice_details';
+    protected $table = 'set_table';
 
     /**
      * The attributes that are mass assignable.
@@ -23,12 +23,8 @@ class InvoiceDetails extends Model
      */
     protected $fillable = [
         'id',
-        'invoice_id',
-        'discount',
-        'food_id',
-        'quantity',
-        'price',
-        'note',
+        'name',
+        'status',
         'created_at',
         'updated_at',
     ];
@@ -37,5 +33,6 @@ class InvoiceDetails extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [ ];
+
 }
