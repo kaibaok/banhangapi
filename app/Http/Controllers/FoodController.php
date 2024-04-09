@@ -65,9 +65,9 @@ class FoodController extends Controller
         ));
 
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
-            'data' => $result
+            'food' => $result
         ], 201);
     }
 
@@ -106,9 +106,9 @@ class FoodController extends Controller
         $result->save();
        
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
-            'data' => $result
+            'food' => $result
         ], 200);
     }
 
@@ -125,7 +125,7 @@ class FoodController extends Controller
         $data->delete();
 
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
             'data' => $data
         ], 200);

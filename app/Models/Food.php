@@ -28,6 +28,7 @@ class Food extends Model
         'image_url',
         'description',
         'name',
+        'price',
         'status',
         'created_at',
         'updated_at',
