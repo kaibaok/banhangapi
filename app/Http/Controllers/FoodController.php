@@ -37,7 +37,7 @@ class FoodController extends Controller
             return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}" ],400);
         $data = Food::find($id);
         if($data)
-            return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+            return response(['food' => $data, 'result' => 'Success', 'error_message' => null]);
         else
             return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
      }

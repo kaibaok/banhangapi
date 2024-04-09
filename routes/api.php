@@ -62,7 +62,7 @@ Route::group([
         Route::post('/create', [FoodController::class, 'create']);
         Route::put('/edit/{id}', [FoodController::class, 'edit']);
         Route::delete('/del/{id}', [FoodController::class, 'delete']);
-        Route::get('/{id}', [FoodController::class, 'getID']);
+        Route::get('/detail/{id}', [FoodController::class, 'getID']);
     });
 
     Route::group(['prefix'=>'category-food'], function(){
