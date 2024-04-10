@@ -67,7 +67,7 @@ class AuthController extends Controller
                     ['password' => bcrypt($request->password)]
                 ));
         return response()->json([
-            'result' => 'User successfully registered',
+            'result' => 'User Successfully registered',
             'error_message' => null,
             'user' => $user
         ], 201);
@@ -81,7 +81,7 @@ class AuthController extends Controller
     public function logout() {
         auth()->logout();
         return response()->json([
-            'result' => 'User successfully signed out',
+            'result' => 'User Successfully signed out',
             'error_message' => null
         ]);
     }

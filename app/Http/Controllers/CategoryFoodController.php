@@ -17,7 +17,7 @@ class CategoryFoodController extends Controller
         }
         $data = $results->paginate($limit)->withQueryString()->toArray();
 
-        return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+        return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 
     public function getID(Request $request, $id) {
@@ -25,7 +25,7 @@ class CategoryFoodController extends Controller
             return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}" ],400);
         $data = CategoryFood::find($id);
         if($data)
-            return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+            return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
         else
             return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
      }
@@ -48,7 +48,7 @@ class CategoryFoodController extends Controller
         ));
 
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
             'data' => $result
         ], 201);
@@ -84,7 +84,7 @@ class CategoryFoodController extends Controller
         $result->save();
        
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
             'data' => $result
         ], 200);
@@ -103,7 +103,7 @@ class CategoryFoodController extends Controller
         $data->delete();
 
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
             'data' => $data
         ], 200);

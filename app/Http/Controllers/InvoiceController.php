@@ -49,7 +49,7 @@ class InvoiceController extends Controller
 
         $data = $invoice->paginate($limit)->withQueryString()->toArray();
 
-        return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+        return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 
     public function create(Request $request) {
@@ -89,7 +89,7 @@ class InvoiceController extends Controller
         }
 
         return response([
-                'result' => 'success',
+                'result' => 'Success',
                 'error_message' => null,
                 'data' => $result
             ], 201
@@ -153,7 +153,7 @@ class InvoiceController extends Controller
         }
 
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
             'data' => $invoice
         ], 200);
@@ -175,7 +175,7 @@ class InvoiceController extends Controller
         InvoiceDetails::where('invoice_id', '=', $id)->delete();
 
         return response([
-            'result' => 'success',
+            'result' => 'Success',
             'error_message' => null,
             'data' => $data
         ], 200);

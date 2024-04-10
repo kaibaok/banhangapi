@@ -28,6 +28,6 @@ class InvoiceDetailsController extends Controller
             $data = $data->toArray();
         }
         
-        return response(['data' => $data, 'result' => 'success', 'error_message' => null]);
+        return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 }
