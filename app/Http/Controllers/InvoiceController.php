@@ -13,7 +13,7 @@ class InvoiceController extends Controller
         $limit = !empty($request['limit']) ? $request['limit'] : 30;
         $status = !empty($request['status']) ? $request['status'] : 0;
         $delivery = !empty($request['delivery']) ? $request['delivery'] : 0;
-        $table_id = !empty($request['table_id']) ? $request['table_id'] : 0;
+        $desk_id = !empty($request['desk_id']) ? $request['desk_id'] : 0;
         $user_id = !empty($request['user_id']) ? $request['user_id'] : 0;
         $customer_id = !empty($request['customer_id']) ? $request['customer_id'] : 0;
         $staff_name = !empty($request['staff_name']) ? $request['staff_name'] : '';
@@ -37,8 +37,8 @@ class InvoiceController extends Controller
         if($delivery) {
             $invoice = $invoice->where('invoice.delivery', $delivery);
         }
-        if($table_id) {
-            $invoice = $invoice->where('invoice.table_id', $table_id);
+        if($desk_id) {
+            $invoice = $invoice->where('invoice.desk_id', $desk_id);
         }
         if($user_id) {
             $invoice = $invoice->where('invoice.user_id', $user_id);
@@ -61,7 +61,7 @@ class InvoiceController extends Controller
             'note' => 'string',
             'status' => 'int',
             'delivery' => 'int',
-            'table_id' => 'int',
+            'desk_id' => 'int',
             'user_id' => 'int',
             'discount' => 'int',
             'invoice_details' => '',
@@ -105,7 +105,7 @@ class InvoiceController extends Controller
             'note' => 'string',
             'status' => 'int',
             'delivery' => 'int',
-            'table_id' => 'int',
+            'desk_id' => 'int',
             'user_id' => 'int',
             'discount' => 'int',
             'invoice_details' => '',
@@ -132,7 +132,7 @@ class InvoiceController extends Controller
         if (isset($params['note'])) $invoice->note = $params['note'];
         if (isset($params['status'])) $invoice->status = $params['status'];
         if (isset($params['delivery'])) $invoice->delivery = $params['delivery'];
-        if (isset($params['table_id'])) $invoice->table_id = $params['table_id'];
+        if (isset($params['desk_id'])) $invoice->desk_id = $params['desk_id'];
         if (isset($params['user_id'])) $invoice->user_id = $params['user_id'];
         if (isset($params['discount'])) $invoice->discount = $params['discount'];
         if(isset($params['create_at'])) $result->create_at = $params['create_at'];

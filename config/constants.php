@@ -23,7 +23,7 @@ return [
         'staff' => 2,
         'chef' => 3,
     ],
-    'set_table_status' => [
+    'desk_status' => [
         'avaliable' => 0,
         'unavaliable' => 1,
         'booking' => 2,

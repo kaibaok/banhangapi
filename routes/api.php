@@ -8,7 +8,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\CategoryFoodController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceDetailsController;
-use App\Http\Controllers\SetTableController;
+use App\Http\Controllers\DeskController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -74,13 +74,13 @@ Route::group([
     });
 
 
-    Route::get('/tables', [SetTableController::class, 'getPage']);
-    Route::group(['prefix' => 'table'], function () {
+    Route::get('/desks', [DeskController::class, 'getPage']);
+    Route::group(['prefix' => 'desk'], function () {
         // food
-        Route::post('/create', [SetTableController::class, 'create']);
-        Route::put('/edit/{id}', [SetTableController::class, 'edit']);
-        Route::delete('/del/{id}', [SetTableController::class, 'delete']);
-        Route::get('/{id}', [SetTableController::class, 'getID']);
+        Route::post('/create', [DeskController::class, 'create']);
+        Route::put('/edit/{id}', [DeskController::class, 'edit']);
+        Route::delete('/del/{id}', [DeskController::class, 'delete']);
+        Route::get('/{id}', [DeskController::class, 'getID']);
     });
 });
 

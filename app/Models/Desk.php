@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class SetTable extends Model
+class Desk extends Model
 {
     use HasFactory, Notifiable;
       /**
@@ -14,7 +14,7 @@ class SetTable extends Model
      *
      * @var string
      */
-    protected $table = 'set_table';
+    protected $table = 'desk';
 
     /**
      * The attributes that are mass assignable.

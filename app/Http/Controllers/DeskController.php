@@ -1,31 +1,31 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\SetTable;
+use App\Models\Desk;
 use Validator;
 
-class SetTableController extends Controller
+class DeskController extends Controller
 {
     public function getPage(Request $request) {
 		$limit = !empty($request['limit']) ? $request['limit'] : 30;
         $status = isset($request['status']) ? $request['status'] : 0;
         $name = isset($request['name']) ? $request['name'] : '';
-        $results = SetTable::where('name', 'like', "%{$name}%");
+        $results = Desk::where('name', 'like', "%{$name}%");
         if ($status) {
             $results = $results->where('status', '=', $status);
         }
         $data = $results->paginate($limit)->withQueryString()->toArray();
 
-        return response(['tables' => $data, 'result' => 'Success', 'error_message' => null]);
+        return response(['desks' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 
     public function getID(Request $request, $id)
     {
         if (!$id)
             return response(['result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
-        $data = SetTable::find($id);
+        $data = Desk::find($id);
         if ($data)
-            return response(['table' => $data, 'result' => 'Success', 'error_message' => null]);
+            return response(['desk' => $data, 'result' => 'Success', 'error_message' => null]);
         else
             return response(['result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
     }
@@ -44,14 +44,14 @@ class SetTableController extends Controller
             ], 400);
         }
 
-        $result = SetTable::create(array_merge(
+        $result = Desk::create(array_merge(
             $validator->validated(),
         ));
 
         return response([
             'result' => 'Success',
             'error_message' => null,
-            'table' => $result
+            'desk' => $result
         ], 201);
     }
 
@@ -70,7 +70,7 @@ class SetTableController extends Controller
             ], 400);
         }
 
-        $result = SetTable::find($id);
+        $result = Desk::find($id);
 
         if (!$result) {
             return response(['result' => 'error', "error_message"  => "Not found ID {$id}"], 400);
@@ -86,7 +86,7 @@ class SetTableController extends Controller
         return response([
             'result' => 'Success',
             'error_message' => null,
-            'table' => $result
+            'desk' => $result
         ], 200);
     }
 
@@ -97,7 +97,7 @@ class SetTableController extends Controller
             return response(['result' => 'error', "error_message"  => "Not found ID {$id}"], 400);
         }
 
-        $data = SetTable::find($id);
+        $data = Desk::find($id);
 
         if (!$data) {
             return response(['result' => 'error', "error_message" => "Not found ID {$id}"], 400);

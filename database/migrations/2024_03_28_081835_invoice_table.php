@@ -20,7 +20,7 @@ class InvoiceTable extends Migration
             $table->text('note');
             $table->integer('status')->default(0);
             $table->integer('delivery')->default(0);
-            $table->integer('table_id')->default(0);
+            $table->integer('desk_id')->default(0);
             $table->integer('user_id');  // staff
             $table->integer('customer_id'); // customer
             $table->integer('discount')->default(0); // % discount
@@ -34,7 +34,7 @@ class InvoiceTable extends Migration
                 'note'=> 'ko mún ăn trứng chiên, ít ngọt',                
                 'delivery'=> config('constants.order_delivery.non_delivery'),
                 'status' => config('constants.order_status.unpaid'),
-                'table_id' => 1,
+                'desk_id' => 1,
                 'user_id' => 1,
                 'customer_id' => 1,
                 'discount' => 0,
@@ -47,7 +47,7 @@ class InvoiceTable extends Migration
                 'note'=> 'ko mún ăn trứng chiên, ít ngọt 222',                
                 'delivery'=> config('constants.order_delivery.delivery'),
                 'status' => config('constants.order_status.paid'),
-                'table_id' => 2,
+                'desk_id' => 2,
                 'user_id' => 2,
                 'customer_id' => 2,
                 'discount' => 0,
@@ -60,7 +60,7 @@ class InvoiceTable extends Migration
                 'note'=> 'nhieu mon vo',                
                 'delivery'=> config('constants.order_delivery.non_delivery'),
                 'status' => config('constants.order_status.paid'),
-                'table_id' => 3,
+                'desk_id' => 3,
                 'user_id' => 3,
                 'customer_id' => 2,
                 'discount' => 10,
