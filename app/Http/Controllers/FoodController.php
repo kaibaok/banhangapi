@@ -102,6 +102,8 @@ class FoodController extends Controller
 		if(isset($params['image_url'])) $result->image_url = $params['image_url'];
 		if(isset($params['description'])) $result->description = $params['description'];
 		if(isset($params['status'])) $result->status = $params['status'];
+        if(isset($params['create_at'])) $result->create_at = $params['create_at'];
+        if(isset($params['update_at'])) $result->update_at = $params['update_at'];
 
         $result->save();
        

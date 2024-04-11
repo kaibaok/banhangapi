@@ -9,7 +9,7 @@ use Validator;
 
 class InvoiceController extends Controller
 {
-    public function index(Request $request) {
+    public function getPage(Request $request) {
         $limit = !empty($request['limit']) ? $request['limit'] : 30;
         $status = !empty($request['status']) ? $request['status'] : 0;
         $delivery = !empty($request['delivery']) ? $request['delivery'] : 0;
@@ -135,6 +135,8 @@ class InvoiceController extends Controller
         if (isset($params['table_id'])) $invoice->table_id = $params['table_id'];
         if (isset($params['user_id'])) $invoice->user_id = $params['user_id'];
         if (isset($params['discount'])) $invoice->discount = $params['discount'];
+        if(isset($params['create_at'])) $result->create_at = $params['create_at'];
+        if(isset($params['update_at'])) $result->update_at = $params['update_at'];
 
         $invoice->save();
 

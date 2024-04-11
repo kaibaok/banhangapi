@@ -6,7 +6,7 @@ use Validator;
 
 class SetTableController extends Controller
 {
-    public function index(Request $request) {
+    public function getPage(Request $request) {
 		$limit = !empty($request['limit']) ? $request['limit'] : 30;
         $status = isset($request['status']) ? $request['status'] : 0;
         $name = isset($request['name']) ? $request['name'] : '';
@@ -16,7 +16,7 @@ class SetTableController extends Controller
         }
         $data = $results->paginate($limit)->withQueryString()->toArray();
 
-        return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
+        return response(['tables' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 
     public function getID(Request $request, $id)
@@ -25,7 +25,7 @@ class SetTableController extends Controller
             return response(['result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
         $data = SetTable::find($id);
         if ($data)
-            return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
+            return response(['table' => $data, 'result' => 'Success', 'error_message' => null]);
         else
             return response(['result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
     }
@@ -51,7 +51,7 @@ class SetTableController extends Controller
         return response([
             'result' => 'Success',
             'error_message' => null,
-            'data' => $result
+            'table' => $result
         ], 201);
     }
 
@@ -78,13 +78,15 @@ class SetTableController extends Controller
 
         if (isset($params['name'])) $result->name = $params['name'];
         if (isset($params['status'])) $result->status = $params['status'];
-
+        if(isset($params['create_at'])) $result->create_at = $params['create_at'];
+        if(isset($params['update_at'])) $result->update_at = $params['update_at'];
+        
         $result->save();
 
         return response([
             'result' => 'Success',
             'error_message' => null,
-            'data' => $result
+            'table' => $result
         ], 200);
     }
 
