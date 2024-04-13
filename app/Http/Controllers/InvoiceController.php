@@ -12,6 +12,7 @@ class InvoiceController extends Controller
     public function getPage(Request $request) {
         $limit = !empty($request['limit']) ? $request['limit'] : 30;
         $status = !empty($request['status']) ? $request['status'] : 0;
+        $confirm = !empty($request['confirm']) ? $request['confirm'] : 0;
         $delivery = !empty($request['delivery']) ? $request['delivery'] : 0;
         $desk_id = !empty($request['desk_id']) ? $request['desk_id'] : 0;
         $user_id = !empty($request['user_id']) ? $request['user_id'] : 0;
@@ -33,6 +34,9 @@ class InvoiceController extends Controller
 
         if($status) {
             $invoice = $invoice->where('invoice.status', $status);
+        }
+        if($confirm) {
+            $invoice = $invoice->where('invoice.confirm', $confirm);
         }
         if($delivery) {
             $invoice = $invoice->where('invoice.delivery', $delivery);
@@ -60,6 +64,7 @@ class InvoiceController extends Controller
             'vat' => 'int',
             'note' => 'string',
             'status' => 'int',
+            'confirm' => 'int',
             'delivery' => 'int',
             'desk_id' => 'int',
             'user_id' => 'int',
@@ -104,6 +109,7 @@ class InvoiceController extends Controller
             'vat' => 'int',
             'note' => 'string',
             'status' => 'int',
+            'confirm' => 'int',
             'delivery' => 'int',
             'desk_id' => 'int',
             'user_id' => 'int',
@@ -131,6 +137,7 @@ class InvoiceController extends Controller
         if (isset($params['vat'])) $invoice->vat = $params['vat'];
         if (isset($params['note'])) $invoice->note = $params['note'];
         if (isset($params['status'])) $invoice->status = $params['status'];
+        if (isset($params['confirm'])) $invoice->status = $params['confirm'];
         if (isset($params['delivery'])) $invoice->delivery = $params['delivery'];
         if (isset($params['desk_id'])) $invoice->desk_id = $params['desk_id'];
         if (isset($params['user_id'])) $invoice->user_id = $params['user_id'];

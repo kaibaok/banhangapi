@@ -21,6 +21,7 @@ class InvoiceDetailsTable extends Migration
             $table->integer('food_id');
             $table->integer('quantity');
             $table->integer('price');
+            $table->integer('status');
             $table->text('note');
             $table->timestamps();
         });
@@ -33,6 +34,7 @@ class InvoiceDetailsTable extends Migration
                 'food_id' => 1,
                 'quantity' => 3,
                 'price' => 10000000,
+                'status' => config('constants.order_detail_status.wait'),
                 'note'=> 'ko mún ăn trứng chiên, ít ngọt',                
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -44,6 +46,7 @@ class InvoiceDetailsTable extends Migration
                 'food_id' => 2,
                 'quantity' => 1,
                 'price' => 100,
+                'status' => config('constants.order_detail_status.complete'),
                 'note'=> 'nuocws mam ít mặn lại',                
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

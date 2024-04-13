@@ -28,6 +28,7 @@ class InvoiceDetails extends Model
         'food_id',
         'quantity',
         'price',
+        'status',
         'note',
         'created_at',
         'updated_at',

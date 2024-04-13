@@ -17,6 +17,16 @@ return [
         'unpaid' => 1,
         'paid' => 2,
     ],
+    'order_confirm' => [
+        'wait' => 0,
+        'process' => 1,
+        'complete' => 2,
+    ],
+    'order_detail_status' => [
+        'wait' => 0,
+        'process' => 1,
+        'complete' => 2,
+    ],
     'permission' => [
         'all'=> 0,
         'admin' => 1,

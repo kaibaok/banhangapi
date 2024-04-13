@@ -29,6 +29,7 @@ class Invoice extends Model
         'delivery',
         'desk_id',
         'user_id',
+        'confirm',
         'customer_id',
         'discount',
         'created_at',
