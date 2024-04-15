@@ -13,12 +13,15 @@ class InvoiceDetailsController extends Controller
 		$page = !empty($params['page']) ? $params['page'] : 1;
 		$limit = !empty($request['limit']) ? $request['limit'] : 0;
         $note = isset($request['note']) ? $request['note'] : '';
-        
+        $status = !empty($request['status']) ? $request['status'] : 0;
+
         $data = null;
         
         $invoiceDetails = InvoiceDetails::where('invoice_id',$invoice_id)
             ->where('note', 'like', "%{$note}%");
-
+        if($status) {
+            $invoice = $invoice->where('invoice.status', $status);
+        }
         if(!$limit)
             $data = $invoiceDetails->get();
         else
