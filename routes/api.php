@@ -37,30 +37,31 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'auth:api' 
+    'middleware' => 'auth:api'
 ], function ($router) {
     // users/
     Route::get('/users', [UserController::class, 'index']);
 
     // invoices
-    Route::get('/invoices', [InvoiceController::class, 'getPage']); 
-    Route::group(['prefix'=>'invoice'], function(){
+    Route::get('/invoices', [InvoiceController::class, 'getPage']);
+    Route::group(['prefix' => 'invoice'], function () {
         Route::post('/create', [InvoiceController::class, 'create']);
         Route::put('/edit/{id}', [InvoiceController::class, 'edit']);
         Route::delete('/del/{id}', [InvoiceController::class, 'delete']);
         Route::get('/detail/{id}', [InvoiceController::class, 'getID']);
+        Route::get('/param/detail', [InvoiceController::class, 'getParam']);
     });
     // invoice_detail
-    Route::group(['prefix'=>'invoice_detail'], function(){
-        Route::get('/details/{invoice_id}', [InvoiceDetailsController::class, 'getDetails']);
+    Route::get('/invoice_details/{invoice_id}', [InvoiceDetailsController::class, 'getDetails']);
+    Route::group(['prefix' => 'invoice_detail'], function () {
         Route::get('/detail/{invoice_detail_id}', [InvoiceDetailsController::class, 'getID']);
     });
 
     // foods
     Route::get('/foods', [FoodController::class, 'getPage']);
     Route::get('/category-foods', [CategoryFoodController::class, 'index']);
-    
-    Route::group(['prefix'=>'food'], function(){
+
+    Route::group(['prefix' => 'food'], function () {
         // food
         Route::post('/create', [FoodController::class, 'create']);
         Route::put('/edit/{id}', [FoodController::class, 'edit']);
@@ -68,7 +69,7 @@ Route::group([
         Route::get('/detail/{id}', [FoodController::class, 'getID']);
     });
 
-    Route::group(['prefix'=>'category-food'], function(){
+    Route::group(['prefix' => 'category-food'], function () {
         // category-food
         Route::post('/create', [CategoryFoodController::class, 'create']);
         Route::put('/edit/{id}', [CategoryFoodController::class, 'edit']);
@@ -91,4 +92,3 @@ Route::group([
 Route::get('/', function () {
     return json_encode(["message" => "hello world"]);
 });
-

@@ -18,14 +18,16 @@ return [
         'paid' => 2,
     ],
     'order_confirm' => [
-        'wait' => 0,
-        'process' => 1,
-        'complete' => 2,
+        'all' => 0,
+        'wait' => 1,
+        'process' => 2,
+        'complete' => 3,
     ],
     'order_detail_status' => [
-        'wait' => 0,
-        'process' => 1,
-        'complete' => 2,
+        'all' => 0,
+        'wait' => 1,
+        'process' => 2,
+        'complete' => 3,
     ],
     'permission' => [
         'all'=> 0,
