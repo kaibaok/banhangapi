@@ -8,7 +8,7 @@ use Validator;
 
 class InvoiceDetailsController extends Controller
 {
-    public function index(Request $request, $invoice_id) {
+    public function getDetails(Request $request, $invoice_id) {
 		$params = $request->all();
 		$page = !empty($params['page']) ? $params['page'] : 1;
 		$limit = !empty($request['limit']) ? $request['limit'] : 0;
@@ -28,6 +28,16 @@ class InvoiceDetailsController extends Controller
             $data = $data->toArray();
         }
         
-        return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
+        return response(['invoice_details' => $data, 'result' => 'Success', 'error_message' => null]);
     }
+
+    public function getID(Request $request, $id) {
+        if(!$id) 
+            return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}" ],400);
+        $data = InvoiceDetails::find($id);
+        if($data)
+            return response(['invoice_detail' => $data, 'result' => 'Success', 'error_message' => null]);
+        else
+            return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
+     }
 }

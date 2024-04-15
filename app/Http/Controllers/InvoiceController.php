@@ -53,7 +53,7 @@ class InvoiceController extends Controller
 
         $data = $invoice->paginate($limit)->withQueryString()->toArray();
 
-        return response(['data' => $data, 'result' => 'Success', 'error_message' => null]);
+        return response(['invoices' => $data, 'result' => 'Success', 'error_message' => null]);
     }
 
     public function create(Request $request) {
@@ -96,10 +96,20 @@ class InvoiceController extends Controller
         return response([
                 'result' => 'Success',
                 'error_message' => null,
-                'data' => $result
+                'invoice' => $result
             ], 201
         );
     }
+
+    public function getID(Request $request, $id) {
+        if(!$id) 
+            return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}" ],400);
+        $data = Invoice::find($id);
+        if($data)
+            return response(['invoice' => $data, 'result' => 'Success', 'error_message' => null]);
+        else
+            return response([ 'result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
+     }
 
 
     public function edit(Request $request, $id) {
@@ -164,7 +174,7 @@ class InvoiceController extends Controller
         return response([
             'result' => 'Success',
             'error_message' => null,
-            'data' => $invoice
+            'invoice' => $invoice
         ], 200);
     }
 
@@ -186,7 +196,7 @@ class InvoiceController extends Controller
         return response([
             'result' => 'Success',
             'error_message' => null,
-            'data' => $data
+            'invoice' => $data
         ], 200);
     }
 }

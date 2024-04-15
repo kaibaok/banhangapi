@@ -45,12 +45,15 @@ Route::group([
     // invoices
     Route::get('/invoices', [InvoiceController::class, 'getPage']); 
     Route::group(['prefix'=>'invoice'], function(){
-        // invoice/details/{invoice_id}
         Route::post('/create', [InvoiceController::class, 'create']);
         Route::put('/edit/{id}', [InvoiceController::class, 'edit']);
         Route::delete('/del/{id}', [InvoiceController::class, 'delete']);
-        Route::get('/{id}', [InvoiceController::class, 'getID']);
-        Route::get('/details/{invoice_id}', [InvoiceDetailsController::class, 'getPage']);
+        Route::get('/detail/{id}', [InvoiceController::class, 'getID']);
+    });
+    // invoice_detail
+    Route::group(['prefix'=>'invoice_detail'], function(){
+        Route::get('/details/{invoice_id}', [InvoiceDetailsController::class, 'getDetails']);
+        Route::get('/detail/{invoice_detail_id}', [InvoiceDetailsController::class, 'getID']);
     });
 
     // foods
