@@ -15,7 +15,11 @@ class Food extends Model
      * @var string
      */
     protected $table = 'food';
-
+    /**
+     * Indicates if the model should be time
+     * @var bool
+     */
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

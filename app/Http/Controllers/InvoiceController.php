@@ -66,7 +66,7 @@ class InvoiceController extends Controller
         $validator = Validator::make($params, [
             'customer_id' => 'required|int',
             'vat' => 'int',
-            'note' => 'string',
+            'note' => 'nullable|string',
             'status' => 'int',
             'confirm' => 'int',
             'delivery' => 'int',
@@ -153,7 +153,7 @@ class InvoiceController extends Controller
         $validator = Validator::make($params, [
             'customer_id' => 'required|int',
             'vat' => 'int',
-            'note' => 'string',
+            'note' => 'nullable|string',
             'status' => 'int',
             'confirm' => 'int',
             'delivery' => 'int',
@@ -183,13 +183,11 @@ class InvoiceController extends Controller
         if (isset($params['vat'])) $invoice->vat = $params['vat'];
         if (isset($params['note'])) $invoice->note = $params['note'];
         if (isset($params['status'])) $invoice->status = $params['status'];
-        if (isset($params['confirm'])) $invoice->status = $params['confirm'];
+        if (isset($params['confirm'])) $invoice->confirm = $params['confirm'];
         if (isset($params['delivery'])) $invoice->delivery = $params['delivery'];
         if (isset($params['desk_id'])) $invoice->desk_id = $params['desk_id'];
         if (isset($params['user_id'])) $invoice->user_id = $params['user_id'];
         if (isset($params['discount'])) $invoice->discount = $params['discount'];
-        if (isset($params['create_at'])) $result->create_at = $params['create_at'];
-        if (isset($params['update_at'])) $result->update_at = $params['update_at'];
 
         $invoice->save();
 

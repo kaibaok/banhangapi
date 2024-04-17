@@ -15,7 +15,11 @@ class Desk extends Model
      * @var string
      */
     protected $table = 'desk';
-
+    /**
+     * Indicates if the model should be time
+     * @var bool
+     */
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

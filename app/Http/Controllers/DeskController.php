@@ -78,8 +78,6 @@ class DeskController extends Controller
 
         if (isset($params['name'])) $result->name = $params['name'];
         if (isset($params['status'])) $result->status = $params['status'];
-        if(isset($params['create_at'])) $result->create_at = $params['create_at'];
-        if(isset($params['update_at'])) $result->update_at = $params['update_at'];
         
         $result->save();
 

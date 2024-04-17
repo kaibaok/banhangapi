@@ -17,6 +17,11 @@ class Invoice extends Model
     protected $table = 'invoice';
 
     /**
+     * Indicates if the model should be time
+     * @var bool
+     */
+    public $timestamps = false;
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
