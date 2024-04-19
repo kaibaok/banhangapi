@@ -17,12 +17,12 @@ class InvoiceDetailsTable extends Migration
           Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
             $table->integer('invoice_id');
-            $table->integer('discount');
+            $table->integer('discount')->default(0);
             $table->integer('food_id');
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->integer('status');
-            $table->text('note');
+            $table->integer('quantity')->default(0);
+            $table->integer('price')->default(0);
+            $table->integer('status')->default(0);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
 

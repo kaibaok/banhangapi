@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryFoodController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\DeskController;
+use App\Http\Controllers\PrintController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -92,8 +93,10 @@ Route::group([
         Route::delete('/del/{id}', [DeskController::class, 'delete']);
         Route::get('/{id}', [DeskController::class, 'getID']);
     });
+
 });
 
+Route::get('/print-invoice', [PrintController::class, 'index']);
 
 Route::get('/', function () {
     return json_encode(["message" => "hello world"]);

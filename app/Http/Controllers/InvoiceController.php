@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Invoice;
@@ -91,6 +92,8 @@ class InvoiceController extends Controller
             foreach ($invoice_details as &$invoice_detail) {
                 if (!empty($invoice_detail['food_id'])) {
                     $invoice_detail['invoice_id'] = $result->id;
+                    $invoice_detail['created_at'] = $result->created_at;
+                    $invoice_detail['updated_at'] = $result->created_at;
                     array_push($dataUpdate, $invoice_detail);
                 }
             }
@@ -196,9 +199,12 @@ class InvoiceController extends Controller
         if ($invoice && !empty($invoice_details)) {
             InvoiceDetails::where('invoice_id', '=', $id)->delete();
             $dataUpdate = [];
+            $dateNow = Carbon::now();
             foreach ($invoice_details as &$invoice_detail) {
                 if (!empty($invoice_detail['food_id'])) {
                     $invoice_detail['invoice_id'] = $id;
+                    $invoice_detail['created_at'] = $dateNow;
+                    $invoice_detail['updated_at'] = $dateNow;
                     array_push($dataUpdate, $invoice_detail);
                 }
             }

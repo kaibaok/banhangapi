@@ -38,4 +38,7 @@ class UserInfo extends Model
      */
     protected $hidden = [ ];
 
+    public $timestamps = true;
+
+
 }

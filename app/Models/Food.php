@@ -19,7 +19,7 @@ class Food extends Model
      * Indicates if the model should be time
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
     /**
      * The attributes that are mass assignable.
      *
