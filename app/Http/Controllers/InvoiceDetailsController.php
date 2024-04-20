@@ -11,7 +11,6 @@ class InvoiceDetailsController extends Controller
 {
     public function getDetails(Request $request, $invoice_id) {
 		$limit = !empty($request['limit']) ? $request['limit'] : 30;
-        $note = isset($request['note']) ? $request['note'] : '';
         $status = !empty($request['status']) ? $request['status'] : 0;
 
         $data = null;
@@ -19,8 +18,7 @@ class InvoiceDetailsController extends Controller
         $invoiceDetails = DB::table('invoice_details')
             ->selectRaw("invoice_details.*, food.name as food_name")
             ->join('food', 'food.id', '=', 'invoice_details.food_id')
-            ->where('invoice_details.invoice_id', $invoice_id)
-            ->where('invoice_details.note', 'like', "%{$note}%");
+            ->where('invoice_details.invoice_id', $invoice_id);
 
         $data = $invoiceDetails->paginate($limit)->withQueryString()->toArray();
         

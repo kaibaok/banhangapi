@@ -67,7 +67,7 @@ class InvoiceController extends Controller
         $validator = Validator::make($params, [
             'customer_id' => 'required|int',
             'vat' => 'int',
-            'note' => 'nullable|string',
+            'note' => 'string|nullable',
             'status' => 'int',
             'confirm' => 'int',
             'delivery' => 'int',
@@ -156,7 +156,7 @@ class InvoiceController extends Controller
         $validator = Validator::make($params, [
             'customer_id' => 'required|int',
             'vat' => 'int',
-            'note' => 'nullable|string',
+            'note' => 'string|nullable',
             'status' => 'int',
             'confirm' => 'int',
             'delivery' => 'int',

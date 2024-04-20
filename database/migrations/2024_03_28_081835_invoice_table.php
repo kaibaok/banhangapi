@@ -17,7 +17,7 @@ class InvoiceTable extends Migration
        Schema::create('invoice', function (Blueprint $table) {
             $table->id();
             $table->integer('vat');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->integer('status')->default(0);
             $table->integer('confirm')->default(0);
             $table->integer('delivery')->default(0);
