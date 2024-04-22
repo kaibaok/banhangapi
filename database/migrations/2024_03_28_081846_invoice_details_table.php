@@ -30,7 +30,7 @@ class InvoiceDetailsTable extends Migration
             [
                 'id' => 1,
                 'invoice_id' => 1,
-                'discount' => 10000,
+                'discount' => 0,
                 'food_id' => 1,
                 'quantity' => 3,
                 'price' => 90000,
@@ -54,7 +54,7 @@ class InvoiceDetailsTable extends Migration
             [
                 'id' => 3,
                 'invoice_id' => 1,
-                'discount' => 10000,
+                'discount' => 0,
                 'food_id' => 1,
                 'quantity' => 3,
                 'price' => 90000,
