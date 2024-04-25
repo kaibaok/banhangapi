@@ -25,7 +25,7 @@ class CustomerTable extends Migration
 
         DB::table('customer')->insert([
             [
-                'id' => 1,
+                'id' => config('constants.customer_id.on_desk'),
                 'full_name' => 'khach hang 1',
                 'cid' => '123123',
                 'address'=>'34/1 kp4 nha be',
@@ -34,7 +34,7 @@ class CustomerTable extends Migration
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id' => 2,
+                'id' => config('constants.customer_id.on_delivery'),
                 'full_name' => 'khach hang 2',
                 'cid' => '123123',
                 'address'=>'34/1 kp4 nha be',

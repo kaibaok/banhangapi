@@ -59,7 +59,6 @@ class DeskController extends Controller
     {
         $params = $request->json()->all();
         $validator = Validator::make($params, [
-            'name' => 'required|string|between:2,255',
             'status' => 'int',
         ]);
 

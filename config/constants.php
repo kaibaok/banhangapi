@@ -40,4 +40,8 @@ return [
         'unavaliable' => 1,
         'booking' => 2,
     ],
+    'customer_id' => [
+        'on_desk' => 1,
+        'on_delivery' => 2,
+    ],
 ];
