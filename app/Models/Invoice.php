@@ -47,4 +47,9 @@ class Invoice extends Model
      */
     protected $hidden = [ ];
 
+    public function details()
+    {
+        return $this->hasMany(InvoiceDetails::class, 'invoice_id');
+    }
+
 }

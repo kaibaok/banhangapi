@@ -9,7 +9,6 @@ use App\Models\Invoice;
 use App\Models\InvoiceDetails;
 use Validator;
 
-
 class InvoiceController extends Controller
 {
     public function getPage(Request $request)
@@ -26,7 +25,8 @@ class InvoiceController extends Controller
         $note = !empty($request['note']) ? $request['note'] : '';
         $data = null;
 
-        $invoice = DB::table('invoice')
+        $invoice = 
+            Invoice::with('details')
             ->selectRaw("invoice.*, user.username as staff_name, customer.full_name as customer_name")
             ->join('user', 'invoice.user_id', '=', 'user.id')
             ->join('customer', 'invoice.customer_id', '=', 'customer.id')
@@ -55,7 +55,7 @@ class InvoiceController extends Controller
             $invoice = $invoice->where('invoice.customer_id', $customer_id);
         }
 
-        $data = $invoice->paginate($limit)->withQueryString()->toArray();
+        $data = $invoice->with('details')->paginate($limit)->withQueryString()->toArray();
 
         return response(['invoices' => $data, 'result' => 'Success', 'error_message' => null]);
     }

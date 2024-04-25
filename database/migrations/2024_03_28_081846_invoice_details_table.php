@@ -53,7 +53,7 @@ class InvoiceDetailsTable extends Migration
             ],
             [
                 'id' => 3,
-                'invoice_id' => 1,
+                'invoice_id' => 3,
                 'discount' => 10000,
                 'food_id' => 1,
                 'quantity' => 3,
@@ -65,7 +65,7 @@ class InvoiceDetailsTable extends Migration
             ],
             [
                 'id' => 4,
-                'invoice_id' => 1,
+                'invoice_id' => 3,
                 'discount' => 0,
                 'food_id' => 2,
                 'quantity' => 1,
@@ -77,7 +77,7 @@ class InvoiceDetailsTable extends Migration
             ],
             [
                 'id' => 5,
-                'invoice_id' => 1,
+                'invoice_id' => 2,
                 'discount' => 10000,
                 'food_id' => 1,
                 'quantity' => 3,
@@ -89,7 +89,7 @@ class InvoiceDetailsTable extends Migration
             ],
             [
                 'id' => 6,
-                'invoice_id' => 1,
+                'invoice_id' => 2,
                 'discount' => 0,
                 'food_id' => 2,
                 'quantity' => 1,

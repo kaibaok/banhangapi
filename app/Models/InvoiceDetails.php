@@ -43,4 +43,9 @@ class InvoiceDetails extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class, 'invoice_id');
+    }
 }
