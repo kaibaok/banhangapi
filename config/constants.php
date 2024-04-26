@@ -36,9 +36,10 @@ return [
         'chef' => 3,
     ],
     'desk_status' => [
-        'avaliable' => 0,
-        'unavaliable' => 1,
-        'booking' => 2,
+        'all'=> 0,
+        'avaliable' => 1,
+        'unavaliable' => 2,
+        'booking' => 3,
     ],
     'customer_id' => [
         'on_desk' => 1,
