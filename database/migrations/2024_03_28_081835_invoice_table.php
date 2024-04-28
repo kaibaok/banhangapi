@@ -25,6 +25,7 @@ class InvoiceTable extends Migration
             $table->integer('user_id');  // staff
             $table->integer('customer_id'); // customer
             $table->integer('discount')->default(0); // % discount
+            $table->date('finish_date')->default(Date::now()->toDateString())->nullable(true);  
             $table->timestamps();
         });
 
@@ -40,6 +41,7 @@ class InvoiceTable extends Migration
                 'user_id' => 1,
                 'customer_id' => 1,
                 'discount' => 0,
+                'finish_date' => Date::now()->toDateString(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -54,6 +56,7 @@ class InvoiceTable extends Migration
                 'user_id' => 2,
                 'customer_id' => 2,
                 'discount' => 0,
+                'finish_date' => Date::now()->toDateString(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -68,6 +71,7 @@ class InvoiceTable extends Migration
                 'user_id' => 3,
                 'customer_id' => 2,
                 'discount' => 10,
+                'finish_date' => Date::now()->toDateString(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -82,6 +86,7 @@ class InvoiceTable extends Migration
                 'user_id' => 2,
                 'customer_id' => 2,
                 'discount' => 0,
+                'finish_date' => Date::now()->toDateString(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

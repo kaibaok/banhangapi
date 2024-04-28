@@ -74,6 +74,7 @@ class InvoiceController extends Controller
             'desk_id' => 'int',
             'user_id' => 'int',
             'discount' => 'int',
+            'finish_date' => 'string|nullable',
             'invoice_details' => '',
         ]);
 
@@ -83,7 +84,6 @@ class InvoiceController extends Controller
                 "error_message" => $validator->errors()
             ], 400);
         }
-
         $invoice_details = !empty($params['invoice_details']) ? $params['invoice_details'] : [];
         $result = Invoice::create(array_merge($validator->validated()));
 
@@ -163,6 +163,7 @@ class InvoiceController extends Controller
             'desk_id' => 'int',
             'user_id' => 'int',
             'discount' => 'int',
+            'finish_date' => 'string|nullable',
             'invoice_details' => '',
         ]);
 
@@ -191,6 +192,7 @@ class InvoiceController extends Controller
         if (isset($params['desk_id'])) $invoice->desk_id = $params['desk_id'];
         if (isset($params['user_id'])) $invoice->user_id = $params['user_id'];
         if (isset($params['discount'])) $invoice->discount = $params['discount'];
+        if (isset($params['finish_date'])) $invoice->finish_date = $params['finish_date'];
 
         $invoice->save();
 

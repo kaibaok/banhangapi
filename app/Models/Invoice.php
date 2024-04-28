@@ -37,6 +37,7 @@ class Invoice extends Model
         'confirm',
         'customer_id',
         'discount',
+        'finish_date',
         'created_at',
         'updated_at',
     ];
