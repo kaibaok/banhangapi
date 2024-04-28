@@ -29,6 +29,7 @@ class Desk extends Model
         'id',
         'name',
         'status',
+        'used_at',
         'created_at',
         'updated_at',
     ];
