@@ -34,7 +34,6 @@ class DeskController extends Controller
     {
         $validator = Validator::make($request->json()->all(), [
             'name' => 'required|string|between:2,255',
-            'used_at' => 'string|nullable',
             'status' => 'int',
         ]);
 
@@ -60,8 +59,6 @@ class DeskController extends Controller
     {
         $params = $request->json()->all();
         $validator = Validator::make($params, [
-            'name' => 'string|between:2,255',
-            'used_at' => 'string|nullable',
             'status' => 'int',
         ]);
 
@@ -80,7 +77,6 @@ class DeskController extends Controller
 
         if (isset($params['name'])) $result->name = $params['name'];
         if (isset($params['status'])) $result->status = $params['status'];
-        if (isset($params['used_at'])) $result->used_at = $params['used_at'];
         
         $result->save();
 
