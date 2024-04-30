@@ -48,4 +48,8 @@ class InvoiceDetails extends Model
     {
         return $this->belongsTo(Invoice::class, 'invoice_id');
     }
+    public function food()
+    {
+        return $this->belongsTo(Food::class, 'food_id');
+    }
 }

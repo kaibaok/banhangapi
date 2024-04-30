@@ -128,8 +128,15 @@ class InvoiceController extends Controller
         $desk_id = !empty($request['desk_id']) ? $request['desk_id'] : 0;
         $confirm = !empty($request['confirm']) ? $request['confirm'] : 0;
 
-        $invoice = DB::table('invoice')
-            ->selectRaw("invoice.*");
+        // $invoice = Invoice::with('details.food')
+        //     ->selectRaw("invoice.*");
+
+        $invoice = Invoice::with(['details' => function($query) {
+            $query->leftJoin('food', 'food.id', '=', 'invoice_details.food_id')
+                    ->select('invoice_details.*', 'food.name as food_name');
+        }])
+        ->selectRaw("invoice.*");
+
         if ($status) {
             $invoice = $invoice->where('invoice.status', $status);
         }
