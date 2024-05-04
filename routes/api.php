@@ -52,16 +52,10 @@ Route::group([
         Route::get('/detail/{id}', [InvoiceController::class, 'getID']);
         Route::get('/param/detail', [InvoiceController::class, 'getParam']);
     });
-    // invoice_detail
-// <<<<<<< HEAD
     Route::get('/invoice_details/{invoice_id}', [InvoiceDetailsController::class, 'getDetails']);
     Route::group(['prefix' => 'invoice_detail'], function () {
         Route::get('/detail/{invoice_detail_id}', [InvoiceDetailsController::class, 'getID']);
-// =======
-//     Route::group(['prefix'=>'invoice_details'], function(){
-//         Route::get('/{invoice_id}', [InvoiceDetailsController::class, 'getDetails']);
-//         Route::get('/detail_id/{invoice_detail_id}', [InvoiceDetailsController::class, 'getID']);
-// >>>>>>> 5b32a3467cd8100bc91294b4528be445ff3ee556
+        Route::put('/detail/{invoice_detail_id}', [InvoiceDetailsController::class, 'edit']);
     });
 
     // foods
