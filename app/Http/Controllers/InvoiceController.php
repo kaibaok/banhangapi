@@ -22,7 +22,6 @@ class InvoiceController extends Controller
         $customer_id = !empty($request['customer_id']) ? $request['customer_id'] : 0;
         $staff_name = !empty($request['staff_name']) ? $request['staff_name'] : '';
         $customer_name = !empty($request['customer_name']) ? $request['customer_name'] : '';
-        $note = !empty($request['note']) ? $request['note'] : '';
         $data = null;
 
         $invoice = 
@@ -31,7 +30,6 @@ class InvoiceController extends Controller
             ->join('user', 'invoice.user_id', '=', 'user.id')
             ->join('customer', 'invoice.customer_id', '=', 'customer.id')
             ->join('user_info', 'user.id', '=', 'user_info.user_id')
-            ->where('invoice.note', 'like', "%{$note}%")
             ->where('user_info.full_name', 'like', "%{$staff_name}%")
             ->where('customer.full_name', 'like', "%{$customer_name}%");
 
@@ -72,6 +70,7 @@ class InvoiceController extends Controller
             'confirm' => 'int',
             'delivery' => 'int',
             'desk_id' => 'int',
+            'total_price' => 'int',
             'user_id' => 'int',
             'discount' => 'int',
             'finish_date' => 'string|nullable',
@@ -114,7 +113,11 @@ class InvoiceController extends Controller
     {
         if (!$id)
             return response(['result' => 'error', 'error_message' => "Not found ID {$id}"], 400);
-        $data = Invoice::find($id);
+        $data = Invoice::with(['details' => function($query) {
+            $query->leftJoin('food', 'food.id', '=', 'invoice_details.food_id')
+                    ->select('invoice_details.*', 'food.name as food_name');
+        }])->find($id);
+
         if ($data)
             return response(['invoice' => $data, 'result' => 'Success', 'error_message' => null]);
         else
@@ -163,6 +166,7 @@ class InvoiceController extends Controller
             'note' => 'string|nullable',
             'status' => 'int',
             'confirm' => 'int',
+            'total_price' => 'int',
             'delivery' => 'int',
             'desk_id' => 'int',
             'user_id' => 'int',

@@ -22,6 +22,7 @@ class InvoiceTable extends Migration
             $table->integer('confirm')->default(0);
             $table->integer('delivery')->default(0);
             $table->integer('desk_id')->default(0);
+            $table->integer('total_price');
             $table->integer('user_id');  // staff
             $table->integer('customer_id'); // customer
             $table->integer('discount')->default(0); // % discount
@@ -40,6 +41,7 @@ class InvoiceTable extends Migration
                 'desk_id' => 1,
                 'user_id' => 1,
                 'customer_id' => 1,
+                'total_price' => '100000',
                 'discount' => 0,
                 'finish_date' => Date::now()->toIso8601String(),
                 'created_at' => Carbon::now(),
@@ -53,6 +55,7 @@ class InvoiceTable extends Migration
                 'status' => config('constants.order_status.paid'),
                 'confirm' => config('constants.order_confirm.wait'),
                 'desk_id' => 2,
+                'total_price' => '100000',
                 'user_id' => 2,
                 'customer_id' => 2,
                 'discount' => 0,
@@ -65,9 +68,10 @@ class InvoiceTable extends Migration
                 'vat' => 10,
                 'note'=> '',                
                 'delivery'=> config('constants.order_delivery.non_delivery'),
-                'status' => config('constants.order_status.paid'),
+                'status' => config('constants.order_status.unpaid'),
                 'confirm' => config('constants.order_confirm.process'),
                 'desk_id' => 3,
+                'total_price' => '100000',
                 'user_id' => 3,
                 'customer_id' => 2,
                 'discount' => 10,
@@ -80,9 +84,10 @@ class InvoiceTable extends Migration
                 'vat' => 10,
                 'note'=> '',                
                 'delivery'=> config('constants.order_delivery.delivery'),
-                'status' => config('constants.order_status.paid'),
+                'status' => config('constants.order_status.unpaid'),
                 'confirm' => config('constants.order_confirm.wait'),
                 'desk_id' => 41,
+                'total_price' => '100000',
                 'user_id' => 2,
                 'customer_id' => 2,
                 'discount' => 0,

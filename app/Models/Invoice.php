@@ -34,6 +34,7 @@ class Invoice extends Model
         'delivery',
         'desk_id',
         'user_id',
+        'total_price',
         'confirm',
         'customer_id',
         'discount',
