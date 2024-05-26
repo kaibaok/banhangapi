@@ -42,7 +42,7 @@ class DeskTable extends Migration
             [
                 'id' => 3,
                 'name' => 'B.3',
-                'status' => config('constants.desk_status.avaliable'),
+                'status' => config('constants.desk_status.unavaliable'),
                 'used_at' => Carbon::now()->toIso8601String(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

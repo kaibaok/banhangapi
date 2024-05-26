@@ -11,7 +11,7 @@ use Validator;
 
 class InvoiceController extends Controller
 {
-    public function getPage(Request $request)
+    public function getPagekt(Request $request)
     {
         $limit = !empty($request['limit']) ? $request['limit'] : 30;
         $status = !empty($request['status']) ? $request['status'] : 0;
@@ -24,8 +24,7 @@ class InvoiceController extends Controller
         $customer_name = !empty($request['customer_name']) ? $request['customer_name'] : '';
         $data = null;
 
-        $invoice = 
-            Invoice::with('details')
+        $invoice = Invoice::with('details')
             ->selectRaw("invoice.*, user.username as staff_name, customer.full_name as customer_name")
             ->join('user', 'invoice.user_id', '=', 'user.id')
             ->join('customer', 'invoice.customer_id', '=', 'customer.id')
@@ -53,7 +52,41 @@ class InvoiceController extends Controller
             $invoice = $invoice->where('invoice.customer_id', $customer_id);
         }
 
-        $data = $invoice->with('details')->paginate($limit)->withQueryString()->toArray();
+        $data = $invoice->with(['details' => function($query) {
+            $query->leftJoin('food', 'food.id', '=', 'invoice_details.food_id')
+                    ->select('invoice_details.*', 'food.name as food_name');
+        }])->paginate($limit)->withQueryString()->toArray();
+
+        return response(['invoices' => $data, 'result' => 'Success', 'error_message' => null]);
+    }
+    public function getPage(Request $request)
+    {
+        $limit = !empty($request['limit']) ? $request['limit'] : 30;
+        $status = !empty($request['status']) ? $request['status'] : 0;
+        $confirm = !empty($request['confirm']) ? $request['confirm'] : 0;
+        $delivery = !empty($request['delivery']) ? $request['delivery'] : 0;
+        $desk_id = !empty($request['desk_id']) ? $request['desk_id'] : 0;
+        $data = null;
+
+        $invoice = Invoice::with('details')
+            ->selectRaw("invoice.*");
+
+        if ($status) {
+            $invoice = $invoice->where('invoice.status', $status);
+        }
+        if ($confirm) {
+            $invoice = $invoice->where('invoice.confirm', $confirm);
+        }
+        if ($delivery) {
+            $invoice = $invoice->where('invoice.delivery', $delivery);
+        }
+        if ($desk_id) {
+            $invoice = $invoice->where('invoice.desk_id', $desk_id);
+        }
+        $data = $invoice->with(['details' => function($query) {
+            $query->leftJoin('food', 'food.id', '=', 'invoice_details.food_id')
+                    ->select('invoice_details.*', 'food.name as food_name');
+        }])->paginate($limit)->withQueryString()->toArray();
 
         return response(['invoices' => $data, 'result' => 'Success', 'error_message' => null]);
     }
@@ -128,6 +161,7 @@ class InvoiceController extends Controller
     {
         $status = !empty($request['status']) ? $request['status'] : 0;
         $delivery = !empty($request['delivery']) ? $request['delivery'] : 0;
+        $id = !empty($request['id']) ? $request['id'] : 0;
         $desk_id = !empty($request['desk_id']) ? $request['desk_id'] : 0;
         $confirm = !empty($request['confirm']) ? $request['confirm'] : 0;
 
@@ -145,6 +179,9 @@ class InvoiceController extends Controller
         }
         if ($delivery) {
             $invoice = $invoice->where('invoice.delivery', $delivery);
+        }
+        if ($id) {
+            $invoice = $invoice->where('invoice.id', $id);
         }
         if ($desk_id) {
             $invoice = $invoice->where('invoice.desk_id', $desk_id);

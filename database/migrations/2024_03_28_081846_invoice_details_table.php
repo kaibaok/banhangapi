@@ -99,6 +99,30 @@ class InvoiceDetailsTable extends Migration
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'id' => 7,
+                'invoice_id' => 4,
+                'discount' => 10000,
+                'food_id' => 1,
+                'quantity' => 3,
+                'price' => 10000000,
+                'status' => config('constants.order_detail_status.wait'),
+                'note'=> 'ko mún ăn trứng chiên, ít ngọt',                
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'id' => 8,
+                'invoice_id' => 4,
+                'discount' => 0,
+                'food_id' => 2,
+                'quantity' => 1,
+                'price' => 100,
+                'status' => config('constants.order_detail_status.complete'),
+                'note'=> 'nuocws mam ít mặn lại',                
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
     }
 
