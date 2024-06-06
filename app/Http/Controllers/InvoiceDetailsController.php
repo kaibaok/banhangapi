@@ -81,4 +81,34 @@ class InvoiceDetailsController extends Controller
              'invoice_detail' => $result
          ], 200);
      }
+     
+     public function updateStatus(Request $request, $invoice_detail_id)
+     {
+         $params = $request->json()->all();
+         $validator = Validator::make($params, [
+             'status' => 'int',
+         ]);
+ 
+         if ($validator->fails()) {
+             return response([
+                 'result' => 'error',
+                 "error_message" => $validator->errors()
+             ], 400);
+         }
+ 
+         $result = InvoiceDetails::find($invoice_detail_id);
+ 
+         if (!$result) {
+             return response(['result' => 'error', "error_message"  => "Not found ID {$invoice_detail_id}"], 400);
+         }
+         if (isset($params['status'])) $result->status = $params['status'];
+         
+         $result->save();
+ 
+         return response([
+             'result' => 'Success',
+             'error_message' => null,
+             'invoice_detail' => $result
+         ], 200);
+     }
 }
