@@ -28,6 +28,7 @@ return [
         'wait' => 1,
         'process' => 2,
         'complete' => 3,
+        'done' => 4,
     ],
     'permission' => [
         'all'=> 0,

@@ -60,6 +60,7 @@ class DeskController extends Controller
         $params = $request->json()->all();
         $validator = Validator::make($params, [
             'status' => 'int',
+            'used_at' => 'string|nullable',
         ]);
 
         if ($validator->fails()) {
@@ -74,9 +75,8 @@ class DeskController extends Controller
         if (!$result) {
             return response(['result' => 'error', "error_message"  => "Not found ID {$id}"], 400);
         }
-
-        if (isset($params['name'])) $result->name = $params['name'];
         if (isset($params['status'])) $result->status = $params['status'];
+        if (isset($params['used_at'])) $result->used_at = $params['used_at'];
         
         $result->save();
 
